@@ -1,0 +1,32 @@
+{
+  "name": "full-stack-project1",
+  "version": "1.0.0",
+  "description": " ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "esw index.js src --color",
+    "lint:watch": "npm run lint -- --watch",
+    "test": "mocha --reporter progress \"src/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmallahham/FSproj1.git"
+  },
+  "keywords": [
+    "node",
+    "http"
+  ],
+  "author": "Mohammad Allahham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mmallahham/FSproj1/issues"
+  },
+  "homepage": "https://github.com/mmallahham/FSproj1#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0"
+  }
+}
