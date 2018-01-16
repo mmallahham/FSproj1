@@ -9,7 +9,6 @@
     "lint:watch": "npm run lint -- --watch",
     "test": "mocha --reporter progress \"src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch"
-
   },
   "repository": {
     "type": "git",
@@ -17,7 +16,7 @@
   },
   "keywords": [
     "node",
-    "http"
+    "express"
   ],
   "author": "Mohammad Allahham",
   "license": "ISC",
