@@ -5,6 +5,13 @@ var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
+
+
+app.route('/')
+  .get(function (req, res) {
+     res.send('welcome to back-end of the Full Stack course / project 1');
+  })
+
 app.route('/questions')
   .get(function (req, res) {
     db.getAllQuestions(function(questions){
