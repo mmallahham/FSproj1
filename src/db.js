@@ -9,7 +9,7 @@ var db = function() {
   var getAllQuestions = function(callback){
     MongoClient.connect(uri, function(err, client) {
       throwError(err);
-      var collection = client.db("quiz").collection("books");
+      var collection = client.db("quiz").collection("questions");
       collection.find({}).toArray(function(err, docs) {
         throwError(err);
         client.close();
@@ -21,7 +21,7 @@ var db = function() {
   var getQuestionByID = function(id,callback){
     MongoClient.connect(uri, function(err, client) {
       throwError(err);
-      var collection = client.db("quiz").collection("books");
+      var collection = client.db("quiz").collection("questions");
       collection.find({'id':id}).toArray(function(err, docs) {
         throwError(err);
         client.close();
@@ -34,7 +34,7 @@ var db = function() {
   var newQuestion = function(question,callback){
     MongoClient.connect(uri, function(err, client) {
       throwError(err);
-      var collection = client.db("quiz").collection("books");
+      var collection = client.db("quiz").collection("questions");
       collection.insert(question,function(err, doc) {
         throwError(err);
         console.log(doc);
