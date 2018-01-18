@@ -8,7 +8,7 @@ app.set('port', (process.env.PORT || 5000));
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'https://tranquil-tor-64128.herokuapp.com');
+    res.setHeader('Access-Control-Allow-Origin', 'https://tranquil-tor-64128.herokuapp.com/questions');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
