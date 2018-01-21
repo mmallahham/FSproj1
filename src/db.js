@@ -21,7 +21,7 @@ var db = function() {
   var getDocByID = function(id,collectionName,callback){
     MongoClient.connect(uri, function(err, client) {
       throwError(err);
-      var collection = client.db("quiz").collection("collectionName");
+      var collection = client.db("quiz").collection(collectionName);
       collection.find({'id':id}).toArray(function(err, docs) {
         throwError(err);
         client.close();
