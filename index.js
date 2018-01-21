@@ -47,6 +47,23 @@ app.route('/questions/:id')
   res.send('Update the book')
 })
 
+app.route('/answers')
+  .get(function (req, res) {
+    db.getAllDocs('answers',function(answers){
+      console.log(answers);
+      res.json(answers);
+     });
+  })
+  .post(function (req, res) {
+    console.log(req.body);
+
+    var id = parseInt(req.params['id']);
+    db.newQuestion(req.body,function(question){
+      res.json(question);
+    });
+  })
+
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
