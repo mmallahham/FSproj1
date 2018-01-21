@@ -21,7 +21,7 @@ app.route('/')
 
 app.route('/questions')
   .get(function (req, res) {
-    db.getAllQuestions('questions',function(questions){
+    db.getAllDocs('questions',function(questions){
       console.log(questions);
       res.json(questions);
      });
@@ -39,7 +39,7 @@ app.route('/questions')
 app.route('/questions/:id')
 .get(function (req, res) {
   var id = parseInt(req.params['id']);
-  db.getQuestionByID(id,function(question){
+  db.getDocByID(id,'questions',function(question){
     res.json(question);
   });
 })

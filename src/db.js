@@ -6,7 +6,7 @@ var uri = process.env.PROD_MONGODB;
 
 var db = function() {
 
-  var getAllQuestions = function(collectionName,callback){
+  var getAllDocs = function(collectionName,callback){
     MongoClient.connect(uri, function(err, client) {
       throwError(err);
       var collection = client.db("quiz").collection(collectionName);
@@ -18,10 +18,10 @@ var db = function() {
     });
   }
 
-  var getQuestionByID = function(id,callback){
+  var getDocByID = function(id,collectionName,callback){
     MongoClient.connect(uri, function(err, client) {
       throwError(err);
-      var collection = client.db("quiz").collection("questions");
+      var collection = client.db("quiz").collection("collectionName");
       collection.find({'id':id}).toArray(function(err, docs) {
         throwError(err);
         client.close();
@@ -63,8 +63,8 @@ var db = function() {
   };
 
   return{
-    getAllQuestions,
-    getQuestionByID,
+    getAllDocs,
+    getDocByID,
     newQuestion
   }
 
