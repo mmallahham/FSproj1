@@ -8,6 +8,12 @@ app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.json());
 
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.route('/')
   .get(function (req, res) {
     res.send('welcome to back-end of the Full Stack course / project 1');
@@ -15,7 +21,7 @@ app.route('/')
 
 app.route('/questions')
   .get(function (req, res) {
-    db.getAllQuestions(function(questions){
+    db.getAllQuestions('questions',function(questions){
       console.log(questions);
       res.json(questions);
      });
