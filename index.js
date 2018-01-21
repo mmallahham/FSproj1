@@ -43,6 +43,13 @@ app.route('/questions/:id')
     res.json(question);
   });
 })
+.post(function (req, res) {
+  console.log(req.body);
+  var id = parseInt(req.params['id']);
+  db.newQuestion(req.body,function(question){
+    res.json(question);
+  });
+})
 .put(function (req, res) {
   res.send('Update the book')
 })
@@ -54,17 +61,26 @@ app.route('/answers')
       res.json(answers);
      });
   })
-  .post(function (req, res) {
-    console.log(req.body);
 
-    var id = parseInt(req.params['id']);
-    db.newQuestion(req.body,function(question){
-      res.json(question);
-    });
-  })
+app.route('/answers/:id')
+.get(function (req, res) {
+  var id = parseInt(req.params['id']);
+  db.getDocByID(id,'answers',function(question){
+    res.json(question);
+  });
+})
+.post(function (req, res) {
+  console.log(req.body);
+  var id = parseInt(req.params['id']);
+  db.newQuestion(req.body,function(question){
+    res.json(question);
+  });
+})
+.put(function (req, res) {
+  res.send('Update the book')
+})
 
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
-

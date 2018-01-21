@@ -31,11 +31,11 @@ var db = function() {
   }
 
 
-  var newQuestion = function(question,callback){
+  var newDocument = function(newDoc,collection,callback){
     MongoClient.connect(uri, function(err, client) {
       throwError(err);
-      var collection = client.db("quiz").collection("questions");
-      collection.insert(question,function(err, doc) {
+      var collection = client.db("quiz").collection(collection);
+      collection.insert(newDoc,function(err, doc) {
         throwError(err);
         console.log(doc);
         callback(doc);
@@ -44,17 +44,7 @@ var db = function() {
     });
   }
 
-  // var getAllQuestions = function(callback){
-  //   MongoClient.connect(uri, function(err, client) {
-  //     throwError(err);
-  //     var collection = client.db("quiz").collection("answers");
-  //     collection.find({}).toArray(function(err, docs) {
-  //       throwError(err);
-  //       client.close();
-  //       callback(docs);
-  //     });
-  //   });
-  // }
+
 
 
   var throwError = function(err){
