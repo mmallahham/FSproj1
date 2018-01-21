@@ -26,14 +26,6 @@ app.route('/questions')
       res.json(questions);
      });
   })
-  .post(function (req, res) {
-    console.log(req.body);
-
-    var id = parseInt(req.params['id']);
-    db.newQuestion(req.body,function(question){
-      res.json(question);
-    });
-  })
 
 
 app.route('/questions/:id')
@@ -45,8 +37,7 @@ app.route('/questions/:id')
 })
 .post(function (req, res) {
   console.log(req.body);
-  var id = parseInt(req.params['id']);
-  db.newQuestion(req.body,function(question){
+  db.newDocument(req.body,'questions',function(question){
     res.json(question);
   });
 })
@@ -71,8 +62,7 @@ app.route('/answers/:id')
 })
 .post(function (req, res) {
   console.log(req.body);
-  var id = parseInt(req.params['id']);
-  db.newQuestion(req.body,function(question){
+  db.newDocument(req.body,'answers',function(question){
     res.json(question);
   });
 })
