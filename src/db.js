@@ -1,3 +1,4 @@
+
 var MongoClient = require('mongodb').MongoClient;
 
 
@@ -31,11 +32,13 @@ var db = function() {
   }
 
 
-  var newDocument = function(newDoc,collection,callback){
+  var newDocument = function(newDoc,collectionName,callback){
     MongoClient.connect(uri, function(err, client) {
       throwError(err);
-      var collection = client.db("quiz").collection(collection);
-      collection.insert(newDoc,function(err, doc) {
+      console.log(collectionName);
+
+      var collection = client.db("quiz").collection(collectionName);
+      collection.insertMany(newDoc,function(err, doc) {
         throwError(err);
         console.log(doc);
         callback(doc);
@@ -43,9 +46,6 @@ var db = function() {
       client.close();
     });
   }
-
-
-
 
   var throwError = function(err){
     if(err)
