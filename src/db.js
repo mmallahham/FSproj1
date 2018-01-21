@@ -55,7 +55,7 @@ var db = function() {
   return{
     getAllDocs,
     getDocByID,
-    newQuestion
+    newDocument
   }
 
 }();
