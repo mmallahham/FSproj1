@@ -42,7 +42,10 @@ app.route('/questions/:id')
   });
 })
 .put(function (req, res) {
-  res.send('Update the book')
+  console.log(req.body);
+  var id = parseInt(req.params['id']);
+  db.newDocument(id,req.body,'questions',function(question){
+    res.json(question);
 })
 
 app.route('/answers')

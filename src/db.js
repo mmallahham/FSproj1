@@ -47,12 +47,27 @@ var db = function() {
     });
   }
 
+  var updateDocument = function(id,updateObj,collectionName,callback){
+    MongoClient.connect(uri, function(err, client) {
+      throwError(err);
+      var collection = client.db("quiz").collection(collectionName);
+      collection.updateOne({'id':id},updateObj,function(err, doc) {
+        throwError(err);
+        console.log(doc);
+        callback(doc);
+      });
+      client.close();
+    });
+  }
+
+
   var throwError = function(err){
     if(err)
       throw("Error getting data: "+err.message);
   };
 
   return{
+    updateDocument,
     getAllDocs,
     getDocByID,
     newDocument
