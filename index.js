@@ -11,6 +11,8 @@ app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
 
@@ -22,9 +24,15 @@ app.route('/')
 app.route('/questions')
   .get(function (req, res) {
     db.getAllDocs('questions',function(questions){
-      console.log(questions);
+//      console.log(questions);
       res.json(questions);
      });
+  })
+  .post(function (req, res) {
+    console.log(req.body);
+    db.newDocument(req.body,'questions',function(question){
+      res.json(question);
+    });
   })
 
 
@@ -37,14 +45,8 @@ app.route('/questions/:id')
 })
 .post(function (req, res) {
   console.log(req.body);
-  db.newDocument(req.body,'questions',function(question){
-    res.json(question);
-  });
-})
-.put(function (req, res) {
-  console.log(req.body);
   var id = parseInt(req.params['id']);
-  db.newDocument(id,req.body,'questions',function(question){
+  db.updateDocument(id,req.body,'questions',function(question){
     res.json(question);
   });
 })
@@ -52,7 +54,7 @@ app.route('/questions/:id')
 app.route('/answers')
   .get(function (req, res) {
     db.getAllDocs('answers',function(answers){
-      console.log(answers);
+//      console.log(answers);
       res.json(answers);
      });
   })
@@ -60,14 +62,14 @@ app.route('/answers')
 app.route('/answers/:id')
 .get(function (req, res) {
   var id = parseInt(req.params['id']);
-  db.getDocByID(id,'answers',function(question){
-    res.json(question);
+  db.getDocByID(id,'answers',function(answer){
+    res.json(answer);
   });
 })
 .post(function (req, res) {
   console.log(req.body);
-  db.newDocument(req.body,'answers',function(question){
-    res.json(question);
+  db.newDocument(req.body,'answers',function(answer){
+    res.json(answer);
   });
 })
 .put(function (req, res) {

@@ -35,12 +35,9 @@ var db = function() {
   var newDocument = function(newDoc,collectionName,callback){
     MongoClient.connect(uri, function(err, client) {
       throwError(err);
-      console.log(collectionName);
-
       var collection = client.db("quiz").collection(collectionName);
-      collection.insertMany(newDoc,function(err, doc) {
+      collection.insertOne(newDoc,function(err, doc) {
         throwError(err);
-        console.log(doc);
         callback(doc);
       });
       client.close();
@@ -48,10 +45,12 @@ var db = function() {
   }
 
   var updateDocument = function(id,updateObj,collectionName,callback){
+    console.log('update called');
+
     MongoClient.connect(uri, function(err, client) {
       throwError(err);
       var collection = client.db("quiz").collection(collectionName);
-      collection.updateOne({'id':id},updateObj,function(err, doc) {
+      collection.updateOne({'id':id},{$set:updateObj},function(err, doc) {
         throwError(err);
         console.log(doc);
         callback(doc);
