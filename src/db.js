@@ -60,7 +60,6 @@ var db = function() {
     });
   }
 
-
   var throwError = function(err){
     if(err)
       throw("Error getting data: "+err.message);

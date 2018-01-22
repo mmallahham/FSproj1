@@ -46,6 +46,7 @@ app.route('/questions/:id')
   var id = parseInt(req.params['id']);
   db.newDocument(id,req.body,'questions',function(question){
     res.json(question);
+  });
 })
 
 app.route('/answers')
