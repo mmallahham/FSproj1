@@ -52,7 +52,7 @@ var db = function() {
       var collection = client.db("quiz").collection(collectionName);
       collection.updateOne({'id':id},{$set:updateObj},function(err, doc) {
         throwError(err);
-        console.log(doc);
+//        console.log(doc);
         callback(doc);
       });
       client.close();
